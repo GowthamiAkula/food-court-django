@@ -1,0 +1,14 @@
+env/
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.pot
+*.py[cod]
+*.swp
+.vscode/
+**/migrations/*.py
+!**/migrations/__init__.py
