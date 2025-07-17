@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Food Court</title>
+    <title>Register - Food Court</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #81c784, #66bb6a);
+            background: linear-gradient(to right, #f9a825, #fdd835);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,7 +14,7 @@
             margin: 0;
         }
 
-        .login-box {
+        .register-box {
             background: white;
             padding: 30px 40px;
             border-radius: 15px;
@@ -39,7 +39,7 @@
         button {
             width: 100%;
             padding: 12px;
-            background-color: #388e3c;
+            background-color: #f57f17;
             color: white;
             font-weight: bold;
             border: none;
@@ -49,7 +49,7 @@
         }
 
         button:hover {
-            background-color: #2e7d32;
+            background-color: #ef6c00;
         }
 
         .message {
@@ -73,8 +73,8 @@
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h2>Login to Food Court</h2>
+    <div class="register-box">
+        <h2>Create an Account</h2>
 
         {% if messages %}
             {% for message in messages %}
@@ -86,11 +86,12 @@
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
         </form>
 
         <div class="link">
-            Don't have an account? <a href="{% url 'register' %}">Register here</a>
+            Already have an account? <a href="{% url 'login' %}">Login here</a>
         </div>
     </div>
 </body>

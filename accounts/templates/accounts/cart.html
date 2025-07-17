@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">🛒 Your Food Cart</h2>
+
+        {% if items %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price (Each)</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in items %}
+                <tr>
+                    <td>{{ entry.item.name }}</td>
+                    <td>{{ entry.quantity }}</td>
+                    <td>₹{{ entry.item.price }}</td>
+                    <td>₹{{ entry.item_total }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3" class="text-end"><strong>Grand Total</strong></td>
+                    <td><strong>₹{{ total }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ✅ Place Order Button -->
+        <form method="post" action="{% url 'place_order' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary mt-2">
+                ✅ Place Order
+            </button>
+        </form>
+
+        <!-- 🗑️ Clear Cart Button -->
+        <form method="post" action="{% url 'clear_cart' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger mt-2">
+                🗑️ Clear Cart
+            </button>
+        </form>
+
+        {% else %}
+        <p>Your cart is empty. Go to <a href="{% url 'menu' %}">Menu</a> and add some delicious items!</p>
+        {% endif %}
+
+        <!-- 🍔 Back to Menu Button -->
+        <a href="{% url 'menu' %}" class="btn btn-success mt-3">🍔 Back to Menu</a>
+    </div>
+</body>
+</html>
